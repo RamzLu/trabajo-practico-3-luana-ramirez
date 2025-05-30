@@ -36,8 +36,8 @@ function mostrarPersonajesDB(personajes) {
     personajes.forEach(function (personaje) {
         // Agrego una card por cada personaje
         contenedorPrincipal.innerHTML += `
-        <div class="col-3 pb-2 d-flex justify-content-center" data-id="${personaje.id}">
-            <div class="card" style="width: 15rem;">
+        <div class="contenedor col-4 pb-2 d-flex justify-content-center" data-id="${personaje.id}">
+            <div class="card">
                 <img class="card-img-top" src="${personaje.image}" />
                 <div class="card-body">
                    <h5 class="card-title">${personaje.name}</h5>
@@ -56,7 +56,7 @@ function activarEventoVerDetalles() {
     contenedorPrincipal.addEventListener("click", function (e) {
         if (e.target.classList.contains("btn-ver-detalles")) { // Si se hace clic en un botón que tiene la clase "btn-ver-detalles"
             // Busco el div que tiene el id del personaje
-            const cardPadre = e.target.closest(".col-3");
+            const cardPadre = e.target.closest(".col-4");
             const id = cardPadre.dataset.id;
             // Llamo a la función para mostrar la descripción
             DetallesBoton(id);
@@ -121,10 +121,10 @@ formularioBusqueda.addEventListener("submit", function (e) {
     if (personajesFiltrados.length > 0) {
         mostrarPersonajesDB(personajesFiltrados);
     } else {
-        // Si no, muestra un mensaje de "no se encontro"
+        // si no, muestra un mensaje
         contenedorPrincipal.innerHTML = `
             <div class="col-12 text-center">
-                <p>No se encontraron personajes.</p>
+                <p>¡Oh no! No se encontraron personajes..</p>
             </div>
         `;
     }
