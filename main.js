@@ -1,11 +1,12 @@
 const contenedorPrincipal = document.getElementById("contenedor-data")
 const apiDragonBall = "https://dragonball-api.com/api/characters?limit=30";
 
+
 // Pide los datos a la api del internet y la retorna en "data"
 async function cargarDatosApi(url) {
     try {
         const response = await fetch(url); // busca la api
-    
+
         if (!response.ok) {
             throw new Error("Error API");
         }
@@ -34,34 +35,6 @@ function mostrarPersonajesDB(personajes) {
     });
 }
 
-function activarEventoVerDetalles() {
-  contenedorPrincipal.addEventListener("click", function(e) {
-    if (e.target.classList.contains("btn-ver-detalles")) {
-      const cardPadre = e.target.closest(".col-3");
-      const id = cardPadre.dataset.id;
-      verDetalles(id);
-    }
-  });
-}
-activarEventoVerDetalles();
-
-
-async function verDetalles(id) {
-  try {
-    const response = await fetch(`https://dragonball-api.com/api/characters/${id}`);
-
-    if (!response.ok) {
-      throw new Error("Error API");
-    }
-
-    const data = await response.json();
-    alert(data.description);
-  } catch (error) {
-    console.log(error);
-  }
-}
-
-
 window.addEventListener("DOMContentLoaded", iniciarPagina);
 
 async function iniciarPagina() {
@@ -70,3 +43,4 @@ async function iniciarPagina() {
         mostrarPersonajesDB(data.items);
     }
 }
+
