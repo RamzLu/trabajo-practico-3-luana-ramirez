@@ -32,6 +32,7 @@ async function cargarDatosApi(url) {
 
 // Esta función dibuja en pantalla cada personaje que le pase
 function mostrarPersonajesDB(personajes) {
+     contenedorPrincipal.innerHTML = ""; // limpiar el contenedor antes de agregar nuevos personajes
     personajes.forEach(function (personaje) {
         // Agrego una card por cada personaje
         contenedorPrincipal.innerHTML += `
