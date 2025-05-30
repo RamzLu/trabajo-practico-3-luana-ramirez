@@ -34,7 +34,20 @@ function mostrarPersonajesDB(personajes) {
     `;
     });
 }
-async function verDetalles(id) {
+
+function activarEventoVerDetalles() {
+    contenedorPrincipal.addEventListener("click", function (e) {
+        if (e.target.classList.contains("btn-ver-detalles")) {
+            const cardPadre = e.target.closest(".col-3");
+            const id = cardPadre.dataset.id;
+            DetallesBoton(id);
+        }
+    });
+}
+activarEventoVerDetalles();
+
+
+async function DetallesBoton(id) {
     try {
         const response = await fetch(`https://dragonball-api.com/api/characters/${id}`);
 
