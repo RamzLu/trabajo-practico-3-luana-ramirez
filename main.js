@@ -78,12 +78,33 @@ async function DetallesBoton(id) {
 
         const data = await response.json();
 
-        // Muestro la descripción del personaje en la ventanita
-        alert(data.description);
+        // Llena el contenido del modal con los detalles
+        const modalContenido = document.getElementById("modalContenido");
+       modalContenido.innerHTML = `
+            <div class="row">
+                <div class="col-md-4 text-center">
+                <img src="${data.image}" class="img-fluid rounded" alt="${data.name}" />
+                </div>
+                <div class="col-md-8">
+                <h4>${data.name}</h4>
+                <p><strong>Raza:</strong> ${data.race}</p>
+                <p><strong>Género:</strong> ${data.gender}</p>
+                <p><strong>Descripción:</strong> ${data.description || 'No disponible'}${'.'} </p>
+                <p><strong>Ki:</strong> ${data.ki || 'No disponible'}${'.'} </p>
+                <p><strong>Afiliación:</strong> ${data.affiliation || 'No disponible'}${'.'}  </p>
+                <p><strong>Ki máximo:</strong> ${data.maxKi || 'No disponible'}${'.'} </p>
+                </div>
+            </div>
+                    `;
+
+        // mostrar el modal
+        const modal = new bootstrap.Modal(document.getElementById("modalDetalles"));
+        modal.show();
     } catch (error) {
         console.log(error);
     }
 }
+
 
 
 // Cuando la página carga, llamo a esta función
